@@ -1,11 +1,13 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store/redux";
 import { useDispatch } from "react-redux";
+
+import TableHeaderCheckBox from "./TableHeaderCheckBox";
 import {
-  unselectAll,
-  toggleSelectAll,
-  toggleSelectItem,
-} from "../slice/employeeSlice";
+  toggleSelectAllEmployee,
+  toggleSelectEmployee,
+  unselectAllEmployee,
+} from "../slice";
 
 const EmployeeTable = () => {
   const employee = useSelector((state: RootState) => state.employee);
@@ -15,7 +17,7 @@ const EmployeeTable = () => {
     <div>
       <button
         onClick={() => {
-          dispatch(unselectAll());
+          dispatch(unselectAllEmployee());
         }}
       >
         Unselect All
@@ -23,18 +25,13 @@ const EmployeeTable = () => {
       <table>
         <thead>
           <tr>
-            <th>
-              <input
-                type="checkbox"
-                checked={
-                  employee.selectedData.length === employee.data.length &&
-                  employee.data.length > 0
-                }
-                onChange={() => {
-                  dispatch(toggleSelectAll());
-                }}
-              />
-            </th>
+            <TableHeaderCheckBox
+              isALLChecked={employee.isAllChecked}
+              toggleHandler={() => {
+                dispatch(toggleSelectAllEmployee());
+              }}
+            />
+
             <th>ID</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -47,13 +44,13 @@ const EmployeeTable = () => {
           </tr>
         </thead>
         <tbody>
-          {employee.data.map((item) => (
+          {employee.data?.map((item) => (
             <tr key={item.id}>
               <td>
                 <input
                   type="checkbox"
                   checked={employee.selectedData.includes(item.id)}
-                  onChange={() => dispatch(toggleSelectItem(item.id))}
+                  onChange={() => dispatch(toggleSelectEmployee(item.id))}
                 />
               </td>
               <td>{item.id}</td>

@@ -1,38 +1,48 @@
 import { createSlice } from "@reduxjs/toolkit";
 import data from "../assets/employee.json";
+import {
+  makeTableSelectionActions,
+  TableSelectionType,
+} from "../lib/tableSelcetion";
+
+type Employee = {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    zip_code: string;
+  };
+  department: string;
+  position: string;
+  salary: number;
+  hire_date: string;
+};
+
+interface EmployeeSliceType extends TableSelectionType<Employee> {}
+
+const tableSelectionActions = makeTableSelectionActions();
 
 const employeeSlice = createSlice({
   name: "employee",
   initialState: {
-    selectedData: [] as number[],
     data: data,
-  },
+    isAllChecked: false,
+    selectedData: [],
+  } as EmployeeSliceType,
   reducers: {
-    toggleSelectItem: (state, action) => {
-      const selectedId = action.payload;
-      if (state.selectedData.includes(selectedId)) {
-        state.selectedData = state.selectedData.filter(
-          (id) => id !== selectedId
-        );
-      } else {
-        state.selectedData = [...state.selectedData, selectedId];
-      }
-    },
-
-    toggleSelectAll: (state) => {
-      if (state.selectedData.length === state.data.length) {
-        state.selectedData = [];
-      } else {
-        state.selectedData = state.data.map((item) => item.id);
-      }
-    },
-    unselectAll: (state) => {
-      state.selectedData = [];
-    },
+    ...tableSelectionActions,
   },
 });
 
-export const { toggleSelectItem, toggleSelectAll, unselectAll } =
-  employeeSlice.actions;
+export const {
+  toggleSelectItem: toggleSelectEmployee,
+  toggleSelectAll: toggleSelectAllEmployee,
+  unselectAll: unselectAllEmployee,
+} = employeeSlice.actions;
 
-export default employeeSlice.reducer;
+export const employeeReducer = employeeSlice.reducer;
