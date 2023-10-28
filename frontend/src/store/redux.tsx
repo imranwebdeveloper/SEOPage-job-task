@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import selectionReducer from "../slice/selectionSlice";
+import employeeReducer from "../slice/employeeSlice";
 
 const store = configureStore({
   reducer: {
-    selectedRows: selectionReducer,
+    employee: employeeReducer,
   },
 });
 

@@ -4,7 +4,7 @@ import {
   deselectRow,
   selectAllRows,
   deselectAllRows,
-} from "../slice/selectionSlice";
+} from "../slice/employeeSlice";
 
 const ReusableTable = ({ data, header, td }) => {
   const selectedRows = useSelector((state) => state.selectedRows);

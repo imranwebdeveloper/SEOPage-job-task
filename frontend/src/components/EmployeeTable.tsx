@@ -1,18 +1,25 @@
 import { useSelector } from "react-redux";
-import { useSelection } from "../hook/useSelection";
 import { RootState } from "../store/redux";
+import { useDispatch } from "react-redux";
+import {
+  unselectAll,
+  toggleSelectAll,
+  toggleSelectItem,
+} from "../slice/employeeSlice";
 
-const EmployeeTable = ({ employees }) => {
-  const { selectedItems, toggleSelectAll, toggleSelectItem, unselectAll } =
-    useSelection(employees);
-
-  const handle = () => {
-    unselectAll();
-  };
+const EmployeeTable = () => {
+  const employee = useSelector((state: RootState) => state.employee);
+  const dispatch = useDispatch();
 
   return (
     <div>
-      <button onClick={handle}>Unselect All</button>
+      <button
+        onClick={() => {
+          dispatch(unselectAll());
+        }}
+      >
+        Unselect All
+      </button>
       <table>
         <thead>
           <tr>
@@ -20,10 +27,12 @@ const EmployeeTable = ({ employees }) => {
               <input
                 type="checkbox"
                 checked={
-                  selectedItems.length === employees.length &&
-                  employees.length > 0
+                  employee.selectedData.length === employee.data.length &&
+                  employee.data.length > 0
                 }
-                onChange={toggleSelectAll}
+                onChange={() => {
+                  dispatch(toggleSelectAll());
+                }}
               />
             </th>
             <th>ID</th>
@@ -38,24 +47,24 @@ const EmployeeTable = ({ employees }) => {
           </tr>
         </thead>
         <tbody>
-          {employees.map((employee) => (
-            <tr key={employee.id}>
+          {employee.data.map((item) => (
+            <tr key={item.id}>
               <td>
                 <input
                   type="checkbox"
-                  checked={selectedItems.includes(employee.id)}
-                  onChange={() => toggleSelectItem(employee.id)}
+                  checked={employee.selectedData.includes(item.id)}
+                  onChange={() => dispatch(toggleSelectItem(item.id))}
                 />
               </td>
-              <td>{employee.employee_id}</td>
-              <td>{employee.first_name}</td>
-              <td>{employee.last_name}</td>
-              <td>{employee.email}</td>
-              <td>{employee.phone}</td>
-              <td>{employee.department}</td>
-              <td>{employee.position}</td>
-              <td>${employee.salary}</td>
-              <td>{employee.hire_date}</td>
+              <td>{item.id}</td>
+              <td>{item.first_name}</td>
+              <td>{item.last_name}</td>
+              <td>{item.email}</td>
+              <td>{item.phone}</td>
+              <td>{item.department}</td>
+              <td>{item.position}</td>
+              <td>${item.salary}</td>
+              <td>{item.hire_date}</td>
             </tr>
           ))}
         </tbody>
