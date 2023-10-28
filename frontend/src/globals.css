@@ -88,3 +88,68 @@
   background: #0071bd;
   border-radius: 5px;
 }
+
+ul,
+li {
+  list-style-type: none;
+}
+
+.draggable-list__item {
+  padding: 10px 0;
+  border-top: 2px solid transparent;
+}
+
+.draggable-list__item * {
+  pointer-events: none;
+}
+
+.draggable-list__item.dragstart {
+  opacity: 0.5;
+}
+
+.draggable-list__item.dragover {
+  border-top-color: green;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.card__img {
+  width: 50px;
+  margin-right: 20px;
+}
+
+.card__img img {
+  width: 100%;
+}
+
+.star-rating {
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 5px;
+}
+
+.full-yellow {
+  background-image: url("https://laz-img-cdn.alicdn.com/tfs/TB14SXtAXOWBuNjy0FiXXXFxVXa-30-30.png");
+}
+
+.half-yellow {
+  background-image: url("/path-to-half-yellow-star.png");
+}
+
+.gray {
+  background-image: url("https://laz-img-cdn.alicdn.com/tfs/TB1yQX4Ah9YBuNjy0FfXXXIsVXa-30-30.png");
+}

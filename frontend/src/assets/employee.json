@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1,
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john.doe@example.com",
+    "phone": "555-555-5555",
+    "address": {
+      "street": "123 Main Street",
+      "city": "Anytown",
+      "state": "CA",
+      "zip_code": "12345"
+    },
+    "department": "Engineering",
+    "position": "Software Developer",
+    "salary": 75000,
+    "hire_date": "2022-01-15"
+  },
+  {
+    "id": 2,
+    "first_name": "Jane",
+    "last_name": "Smith",
+    "email": "jane.smith@example.com",
+    "phone": "555-555-5556",
+    "address": {
+      "street": "456 Elm Street",
+      "city": "Another Town",
+      "state": "NY",
+      "zip_code": "54321"
+    },
+    "department": "Marketing",
+    "position": "Marketing Manager",
+    "salary": 85000,
+    "hire_date": "2021-09-20"
+  },
+  {
+    "id": 3,
+    "first_name": "Mike",
+    "last_name": "Johnson",
+    "email": "mike.johnson@example.com",
+    "phone": "555-555-5557",
+    "address": {
+      "street": "789 Oak Street",
+      "city": "Smallville",
+      "state": "TX",
+      "zip_code": "67890"
+    },
+    "department": "Finance",
+    "position": "Financial Analyst",
+    "salary": 65000,
+    "hire_date": "2023-03-10"
+  }
+]
